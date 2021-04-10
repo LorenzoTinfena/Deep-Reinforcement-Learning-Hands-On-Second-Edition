@@ -1,9 +1,14 @@
 import gym
+import gnwrapper
 
 
 if __name__ == "__main__":
+<<<<<<< Updated upstream
     env: gym.Env = gym.make("CartPole-v0")
     env = gym.wrappers.Monitor(env, "recording")
+=======
+    env = gnwrapper.Animation(gym.make("CartPole-v0"))
+>>>>>>> Stashed changes
 
     total_reward = 0.0
     total_steps = 0
@@ -16,6 +21,7 @@ if __name__ == "__main__":
         total_steps += 1
         if done:
             break
+    env.render()
 
     print("Episode done in %d steps, total reward %.2f" % (
         total_steps, total_reward))
