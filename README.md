@@ -1,31 +1,29 @@
-# Deep-Reinforcement-Learning-Hands-On-Second-Edition
-Deep-Reinforcement-Learning-Hands-On-Second-Edition, published by Packt
+# Example
 
-## Code branches
-The repository is maintained to keep dependency versions up-to-date. 
-This requires efforts and time to test all the examples on new versions, so, be patient.
+    import pyvirtualdisplay
+    _display = pyvirtualdisplay.Display(visible=False, size=(1400, 900))
+    _ = _display.start()
 
-The logic is following: there are several branches of the code, corresponding to 
-major pytorch version code was tested. Due to incompatibilities in pytorch and other components,
-**code in the printed book might differ from the code in the repo**.
 
-At the moment, there are the following branches available:
-* `master`: contains the code with the latest pytorch which was tested. At the moment, it is pytorch 1.7.
-* `torch-1.3-book`: code printed in the book with minor bug fixes. Uses pytorch=1.3 which 
-is available only on conda repos.
-* `torch-1.7`: pytorch 1.7. This branch was tested and merged into master.
+    import gym
 
-All the branches uses python 3.7, more recent versions weren't tested.
+    if __name__ == "__main__":
+        env = gym.make("CartPole-v0")
+        env = gym.wrappers.Monitor(env, "recording", force=True)
 
-## Dependencies installation
+        total_reward = 0.0
+        total_steps = 0
+        obs = env.reset()
 
-Anaconda is recommended for virtual environment creation.
-Once installed, the following steps will install everything needed:
+        while True:
+            action = env.action_space.sample()
+            obs, reward, done, _ = env.step(action)
+            total_reward += reward
+            total_steps += 1
+            if done:
+                break
 
-* change directory to book repository dir: `cd Deep-Reinforcement-Learning-Hands-On-Second-Edition`
-* create virtual environment with `conda create -n rlbook python=3.7`
-* activate it: `conda activate rlbook`
-* install pytorch (update CUDA version according to your CUDA): `conda install pytorch==1.7 torchvision torchaudio cudatoolkit=10.2 -c pytorch`
-* install rest of dependencies: `pip install requirements.txt`
-
-Now you're ready to launch and experiment with examples!
+        print("Episode done in %d steps, total reward %.2f" % (
+            total_steps, total_reward))
+        env.close()
+        env.env.close()

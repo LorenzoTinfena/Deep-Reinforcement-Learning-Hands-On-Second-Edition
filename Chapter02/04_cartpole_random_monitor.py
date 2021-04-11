@@ -1,9 +1,13 @@
-import gym
+import pyvirtualdisplay
+_display = pyvirtualdisplay.Display(visible=False, size=(1400, 900))
+_ = _display.start()
 
+
+import gym
 
 if __name__ == "__main__":
     env = gym.make("CartPole-v0")
-    env = gym.wrappers.Monitor(env, "recording")
+    env = gym.wrappers.Monitor(env, "recording", force=True)
 
     total_reward = 0.0
     total_steps = 0

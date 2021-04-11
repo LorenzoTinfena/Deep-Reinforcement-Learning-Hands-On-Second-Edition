@@ -16,6 +16,9 @@ RUN apt-get install -y --no-install-recommends \
        cmake \
        python-opengl
 
+RUN apt-get install -y xvfb x11-utils
+RUN pip install gym[box2d]==0.17.* pyvirtualdisplay==0.2.* PyOpenGL==3.1.* PyOpenGL-accelerate==3.1.*
+
 ADD ./.devcontainer/pip-requirements.txt /tmp/
 RUN pip install -r /tmp/pip-requirements.txt
 RUN rm /tmp/pip-requirements.txt
