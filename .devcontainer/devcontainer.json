@@ -28,7 +28,6 @@
 		"jupyter.alwaysTrustNotebooks": true,
 		"jupyter.jupyterServerType": "local"
 	},
-
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-python.python",

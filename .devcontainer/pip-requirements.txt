@@ -13,7 +13,6 @@ pybullet
 ptan
 matplotlib
 gym-notebook-wrapper
-gym[box2d]==0.17.*
-pyvirtualdisplay==0.2.*
-PyOpenGL==3.1.*
-PyOpenGL-accelerate==3.1.*
+pyvirtualdisplay
+PyOpenGL
+PyOpenGL-accelerate
